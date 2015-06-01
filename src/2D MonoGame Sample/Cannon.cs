@@ -95,14 +95,22 @@ namespace _2D_MonoGame_Sample
 
         private void UpdateInput()
         {
-            if (InputHandler.IsHoldingKey(Keys.Up))
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0
+                || InputHandler.IsHoldingKey(Keys.Up))
+            {
                 Rotation -= 0.01f;
+            }
 
-            if (InputHandler.IsHoldingKey(Keys.Down))
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0
+                || InputHandler.IsHoldingKey(Keys.Down))
+            {
                 Rotation += 0.01f;
+            }
 
             if (InputHandler.WasKeyPressed(Keys.Space))
+            {
                 FireCannon();
+            }
 
             InputHandler.Update();
         }
