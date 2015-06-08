@@ -101,13 +101,14 @@ namespace _2D_MonoGame_Sample
                 Rotation -= 0.01f;
             }
 
-            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0
                 || InputHandler.IsHoldingKey(Keys.Down))
             {
                 Rotation += 0.01f;
             }
 
-            if (InputHandler.WasKeyPressed(Keys.Space))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed 
+                || InputHandler.WasKeyPressed(Keys.Space))
             {
                 FireCannon();
             }
