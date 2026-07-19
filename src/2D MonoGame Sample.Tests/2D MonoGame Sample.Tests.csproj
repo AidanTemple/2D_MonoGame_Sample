@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>_2D_MonoGame_Sample.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      Link (not copy) the units under test from the main game project so there is a single
+      source of truth. These two files are pure logic with no GraphicsDevice/content
+      dependency, which is what makes them testable in a headless test host.
+    -->
+    <Compile Include="..\2D MonoGame Sample\CollisionHandler.cs" Link="SourceUnderTest\CollisionHandler.cs" />
+    <Compile Include="..\2D MonoGame Sample\InputHandler.cs" Link="SourceUnderTest\InputHandler.cs" />
+  </ItemGroup>
+
+</Project>

@@ -22,6 +22,11 @@ namespace _2D_MonoGame_Sample
 
         #region GamePad Input
 
+        public static GamePadState CurrentGamePadState
+        {
+            get { return gamePadState; }
+        }
+
         public static bool WasButtonPressed(Buttons button)
         {
             return (prevGamePadState.IsButtonUp(button) && gamePadState.IsButtonDown(button));

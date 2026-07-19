@@ -52,9 +52,7 @@ namespace _2D_MonoGame_Sample
         {
             if (IsAlive)
             {
-                spriteBatch.Draw(Texture, Position, Color);
-
-                base.Draw(spriteBatch);
+                spriteBatch.Draw(Texture, Position, null, Color, Rotation, Origin, Scale, Effects, Depth);
             }
         }
 

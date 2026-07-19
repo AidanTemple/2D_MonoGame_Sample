@@ -95,25 +95,23 @@ namespace _2D_MonoGame_Sample
 
         private void UpdateInput()
         {
-            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0
+            if (InputHandler.CurrentGamePadState.ThumbSticks.Left.Y > 0
                 || InputHandler.IsHoldingKey(Keys.Up))
             {
                 Rotation -= 0.01f;
             }
 
-            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0
+            if (InputHandler.CurrentGamePadState.ThumbSticks.Left.Y < 0
                 || InputHandler.IsHoldingKey(Keys.Down))
             {
                 Rotation += 0.01f;
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed 
+            if (InputHandler.CurrentGamePadState.Buttons.A == ButtonState.Pressed
                 || InputHandler.WasKeyPressed(Keys.Space))
             {
                 FireCannon();
             }
-
-            InputHandler.Update();
         }
 
         private void UpdateCannonBalls()
@@ -134,9 +132,7 @@ namespace _2D_MonoGame_Sample
             {
                 DrawCannonBall(spriteBatch);
 
-                spriteBatch.Draw(Texture, Position, null, Color, Rotation, Origin, 1f, Effects, 0);
-
-                base.Draw(spriteBatch);
+                spriteBatch.Draw(Texture, Position, null, Color, Rotation, Origin, Scale, Effects, 0);
             }
         }
 
