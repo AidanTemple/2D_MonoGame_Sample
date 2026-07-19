@@ -86,22 +86,33 @@ namespace _2D_MonoGame_Sample
 
         private void HandleCollisions()
         {
+            if (m_Enemies == null || m_Cannon.CannonBalls == null)
+            {
+                return;
+            }
+
+            foreach (Enemy enemy in m_Enemies)
+            {
+                enemy.Source = new Rectangle((int)enemy.Position.X, (int)enemy.Position.Y, enemy.Width, enemy.Height);
+            }
+
             foreach (CannonBall ball in m_Cannon.CannonBalls)
             {
+                ball.Source = new Rectangle((int)ball.Position.X, (int)ball.Position.Y, ball.Width, ball.Height);
+
+                if (!ball.IsAlive)
+                {
+                    continue;
+                }
+
                 foreach (Enemy enemy in m_Enemies)
                 {
-                    enemy.Source = new Rectangle((int)enemy.Position.X, (int)enemy.Position.Y, enemy.Width, enemy.Height);
-                    ball.Source = new Rectangle((int)ball.Position.X, (int)ball.Position.Y, ball.Width, ball.Height);                   
-
-                    if (ball.IsAlive)
+                    if (CollisionHandler.Intersects(enemy.Source, ball.Source))
                     {
-                        if (CollisionHandler.Intersects(enemy.Source, ball.Source))
-                        {
-                            enemy.IsAlive = false;
-                            ball.IsAlive = false;
+                        enemy.IsAlive = false;
+                        ball.IsAlive = false;
 
-                            break;
-                        }
+                        break;
                     }
                 }
             }
